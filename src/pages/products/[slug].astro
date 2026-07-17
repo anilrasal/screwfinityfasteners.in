@@ -1,0 +1,61 @@
+---
+import PrimaryCTA from "@/components/ui/buttons/PrimaryCTA.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import type { GetStaticPaths } from "astro";
+    import { getCollection } from "astro:content";
+
+    export const getStaticPaths = (async() => {
+        // Load all product category markdown files
+        const categories = await getCollection('categories');
+        
+        // Map each entry to a route
+        return categories.map((entry)=>({
+            params: {slug: entry.id},
+            props: {data: entry.data}
+        }));
+    });
+    
+    const {data} = Astro.props;
+---
+
+ <MainLayout
+  title={data.title}
+  customDescription={data.description}
+  customOgTitle={data.title}
+  structuredData={{
+    '@context': '#!',
+    '@type': 'Product',
+    '@id': '#!',
+    name: data.products,
+    description: data.description,
+    brand: {
+      '@type': 'Brand',
+      name: 'ScrewFinity Fasteners',
+    },
+  }}
+>
+    <!-- Banner -->
+    <section class="relative h-64 sm:h-80 lg:h-96 bg-gray-800 mt-10">
+        <img src={data.banner.src} alt={data.title} class="absolute inset-0 w-full h-full object-cover opacity-70"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent"></div>
+        <div class="relative z-10 flex flex-col items-center justify-center h-full text-white">
+            <h1 class="text-4xl font-bold">{data.title}</h1>
+            <p class="mt-2 text-lg">{data.description}</p>
+        </div>
+    </section>
+
+    <!--  Product Grid -->
+    <section class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6 p-8 text-center">
+        {data.products?.map((product)=>(
+            <div class="rounded-xl border p-4 shadow hover:shadow-lg transition">
+                <img src={product.image.src} alt={product.name} class="mx-auto h-40 w-auto"/>
+                <h3 class="mt-4 text-lg font-semibold dark:text-neutral-200">{product.name}</h3>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400">{product.description}</p>
+                <div class="mt-4">
+                <PrimaryCTA title={product.btnTitle} url={product.btnURL} noArrow={false}/>
+                </div>
+            </div>
+        ))}
+    </section>
+
+</MainLayout>

@@ -1,0 +1,35 @@
+---
+import { SITE } from '@/data_files/constants';
+import MainLayout from '@/layouts/MainLayout.astro';
+import Icon from '@components/ui/icons/Icon.astro';
+import AboutSection from '@components/sections/misc/AboutSection.astro';
+
+const title: string = 'About Us';
+const subTitle: string =
+  'Screwfinity Fasteners is a leading provider of high-quality fasteners and hardware solutions, dedicated to serving the construction and manufacturing industries with excellence.';
+---
+
+<MainLayout
+    title={`About | ${SITE.title}`}
+    customDescription={subTitle}
+    customOgTitle={`About Us | ${SITE.title}`}
+    structuredData={{
+        '@context': '#!',
+        '@type': '#!',
+        '@id': '#!',
+        url: '#!',
+        name: '#!',
+        description:
+        'Screwfinity Fasteners is a leading provider of high-quality fasteners and hardware solutions, dedicated to serving the construction and manufacturing industries with excellence.',
+        isPartOf: {
+        '@type': '#!',
+        url: '#!',
+        name: '#!',
+        description:
+            'Screwfinity Fasteners offers top-tier hardware tools.',
+        },
+        inLanguage: 'en-US',
+    }}
+>
+ <AboutSection />   
+</MainLayout>

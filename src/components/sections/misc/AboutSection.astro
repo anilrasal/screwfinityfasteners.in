@@ -1,0 +1,81 @@
+---
+import BrandLogo1 from '@/components/BrandLogo1.astro';
+import Icon from '@components/ui/icons/Icon.astro';
+
+
+const title: string = 'About Us';
+const subTitle: string =
+  "Screwfinity Fasteners is a newly established company specializing in the supply of high‑quality screws and bolts. Though new to the market, our strong associations with industry leaders have already positioned us as a trusted player in the fastener manufacturing sector.";
+---
+
+<section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+  <div class="mx-auto max-w-2xl lg:max-w-5xl">
+    
+    <div class="text-center">
+        <div class="flex items-center justify-center gap-4">
+            <BrandLogo1 size="400" className="h-auto w-32" />
+            <h1
+                class="text-2xl font-bold tracking-tight text-balance text-neutral-800 md:text-4xl md:leading-tight dark:text-neutral-200"
+            >
+                Screwfinity Fasteners
+            </h1>
+      </div>
+      <p class="mt-1 text-pretty text-neutral-600 dark:text-neutral-400">
+        We are delighted to introduce ourselves as a newly established company specializing in the supply of high‑quality screws and bolts. Though new to the market, our strong associations with industry leaders such as Protos Electromech Pvt Ltd and local companies have already positioned us as a trusted player in the fastener manufacturing sector.
+      </p>
+    </div>
+
+    <div class="mt-12 grid items-center gap-6 lg:grid-cols-2 lg:gap-16">
+      <!-- Mission -->
+      <div class="flex flex-col rounded-xl p-4 sm:p-6 lg:p-8">
+        <h2 class="mb-8 text-xl font-bold text-neutral-700 dark:text-neutral-300">
+          Our Mission
+        </h2>
+        <p class="text-neutral-600 dark:text-neutral-400">
+          At our core, we prioritize customer satisfaction and strive to exceed expectations. Our mission is to deliver exceptional products and services, empowering customers with reliable fasteners and hardware solutions.
+        </p>
+      </div>
+
+      <!-- Vision -->
+      <div class="flex flex-col rounded-xl p-4 sm:p-6 lg:p-8">
+        <h2 class="mb-8 text-xl font-bold text-neutral-700 dark:text-neutral-300">
+          Our Vision
+        </h2>
+        <p class="text-neutral-600 dark:text-neutral-400">
+          We envision expanding our business through strategic acquisitions, investments in advanced machinery, and diversification into new product areas. This positions us as a vibrant, dynamic, and customer‑oriented company ready to cater to evolving needs.
+        </p>
+      </div>
+    </div>
+
+    <!-- Product Range -->
+    <div class="mt-12 flex flex-col rounded-xl p-4 sm:p-6 lg:p-8">
+      <h2 class="mb-8 text-xl font-bold text-neutral-700 dark:text-neutral-300">
+        Our Products
+      </h2>
+      <p class="text-neutral-600 dark:text-neutral-400">
+        Our extensive range includes screws, bolts, hex bolts, studs, and specialized engineering items. We specialize in both MS and High Tensile categories, ensuring we meet diverse customer requirements.
+      </p>
+    </div>
+
+    <!-- Quality -->
+    <div class="mt-12 flex flex-col rounded-xl p-4 sm:p-6 lg:p-8">
+      <h2 class="mb-8 text-xl font-bold text-neutral-700 dark:text-neutral-300">
+        Commitment to Quality
+      </h2>
+      <p class="text-neutral-600 dark:text-neutral-400">
+        Quality is ingrained in our DNA. We believe it extends far beyond meeting product specifications — it is a discipline and a way of life. We constantly strive for excellence in all aspects of our performance.
+      </p>
+    </div>
+
+    <!-- Contact CTA -->
+    <div class="mt-12 text-center">
+      <h3 class="text-xl font-bold text-neutral-800 dark:text-neutral-200">
+        Get in Touch
+      </h3>
+      <p class="mt-2 text-neutral-600 dark:text-neutral-400">
+        +91 9284828197 · screwfinityfasteners@gmail.com
+      </p>
+    </div>
+  </div>
+</section>
+

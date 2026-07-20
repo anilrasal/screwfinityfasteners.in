@@ -1,15 +1,17 @@
 import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
+// import tsconfigPaths from 'vite-tsconfig-paths';
+// import tailwindPlugin from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
-
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-  site: 'https://screwfinityfastners.com',
+  site: 'https://screwfinityfastners.in',
+
   image: {
     domains: ['images.unsplash.com'],
   },
+
   // i18n: {
   //   defaultLocale: "en",
   //   locales: ["en", "fr"],
@@ -21,6 +23,7 @@ export default defineConfig({
   //   },
   // },
   prefetch: true,
+
   integrations: [
     sitemap({
       i18n: {
@@ -110,10 +113,22 @@ export default defineConfig({
     }),
     mdx(),
   ],
+
   experimental: {
     clientPrerender: true,
   },
   vite: {
-    plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        '@images': '/src/assets/images',
+      },
+    },
   },
+
+  // vite: {
+  //   plugins: [tsconfigPaths(), tailwindPlugin()],
+  //   resolve: {
+  //     plugins: [tsconfigPaths()],
+  //   },
+  // },
 });

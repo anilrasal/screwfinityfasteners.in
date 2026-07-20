@@ -95,6 +95,8 @@ export default defineConfig({
         Head: './src/components/ui/starlight/Head.astro',
         MobileMenuFooter:
           './src/components/ui/starlight/MobileMenuFooter.astro',
+        // 🔑 FIX: You must add this native import line to pair with your ThemeSelect override
+        ThemeProvider: '@astrojs/starlight/components/ThemeProvider.astro',
         ThemeSelect: './src/components/ui/starlight/ThemeSelect.astro',
       },
       head: [

@@ -9,5 +9,5 @@ products:
     description: 'Heavy-duty bolt for secure fastening.'
     image: '@/images/products/tap-bolts-nuts/m8stud1-2.png'
     btnTitle: 'Contact Us to Order'
-    btnURL: '/contact'
+    btnURL: 'contact'
 ---

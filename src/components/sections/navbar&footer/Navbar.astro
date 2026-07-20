@@ -7,7 +7,7 @@ import BrandLogo1 from '@/components/BrandLogo1.astro';
 
 // Select the correct translation based on the page's lang prop:
 const strings = enStrings;
-const homeUrl = '/';
+const base = import.meta.env.BASE_URL; 
 ---
 
 {/* Main header component */}
@@ -23,7 +23,7 @@ const homeUrl = '/';
       {/* Brand logo */}
       <a
         class="flex-none rounded-lg text-xl font-bold ring-zinc-500 outline-hidden focus-visible:ring-3 dark:ring-zinc-200 dark:focus:outline-hidden"
-        href={homeUrl}
+        href={base}
         aria-label="Brand"
       >
         <BrandLogo1 size="201" alt="Screwfinity Fasteners Logo" className="h-auto w-24" />
@@ -84,9 +84,10 @@ const homeUrl = '/';
       >
         {/* Navigation links and Authentication component */}
         {
-          strings.navBarLinks.map(link => (
-            <NavLink url={link.url} name={link.name} />
-          ))
+          strings.navBarLinks.map(link => {
+            const cleanUrl = link.url.startsWith("/") ? link.url.slice(1) : link.url;
+            return <NavLink url={`${base}${cleanUrl}`} name={link.name} />
+          })
         }
 
         <!-- <Authentication />
@@ -103,7 +104,7 @@ const homeUrl = '/';
 <script is:inline>
   const HSThemeAppearance = {
     init() {
-      const defaultTheme = 'default';
+      const defaultTheme = 'light';
       let theme = localStorage.getItem('hs_theme') || defaultTheme;
 
       if (document.querySelector('html').classList.contains('dark')) return;
@@ -124,18 +125,17 @@ const homeUrl = '/';
       }
 
       if (theme === 'auto') {
-        theme = window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark'
-          : 'default';
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       }
 
-      document.querySelector('html').classList.remove('dark');
-      document.querySelector('html').classList.remove('default');
-      document.querySelector('html').classList.remove('auto');
-
-      document
-        .querySelector('html')
-        .classList.add(this.getOriginalAppearance());
+      // 🛠️ FIXED: Keep toggles precise and directly remove opposing class configurations
+      if (theme === 'dark') {
+        document.querySelector('html').classList.add('dark');
+        document.querySelector('html').classList.remove('light', 'default', 'auto');
+      } else {
+        document.querySelector('html').classList.remove('dark', 'default', 'auto');
+        document.querySelector('html').classList.add('light');
+      }
 
       setTimeout(() => {
         $resetStylesEl.remove();
@@ -150,14 +150,12 @@ const homeUrl = '/';
     getAppearance() {
       let theme = this.getOriginalAppearance();
       if (theme === 'auto') {
-        theme = window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark'
-          : 'default';
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       }
       return theme;
     },
     getOriginalAppearance() {
-      const defaultTheme = 'default';
+      const defaultTheme = 'light';
       return localStorage.getItem('hs_theme') || defaultTheme;
     },
   };
@@ -172,26 +170,21 @@ const homeUrl = '/';
     });
 
   window.addEventListener('load', () => {
-    const $clickableThemes = document.querySelectorAll(
-      '[data-hs-theme-click-value]'
-    );
-    const $switchableThemes = document.querySelectorAll(
-      '[data-hs-theme-switch]'
-    );
+    const $clickableThemes = document.querySelectorAll('[data-hs-theme-click-value]');
+    const $switchableThemes = document.querySelectorAll('[data-hs-theme-switch]');
 
     $clickableThemes.forEach($item => {
-      $item.addEventListener('click', () =>
-        HSThemeAppearance.setAppearance(
-          $item.getAttribute('data-hs-theme-click-value'),
-          true,
-          $item
-        )
-      );
+      $item.addEventListener('click', () => {
+        let targetTheme = $item.getAttribute('data-hs-theme-click-value');
+        if (targetTheme === 'default') targetTheme = 'light'; // 🛠️ Normalize 'default' to 'light'
+        HSThemeAppearance.setAppearance(targetTheme, true, $item);
+      });
     });
 
     $switchableThemes.forEach($item => {
       $item.addEventListener('change', e => {
-        HSThemeAppearance.setAppearance(e.target.checked ? 'dark' : 'default');
+        // 🛠️ FIXED: Changed 'default' fallback string to 'light'
+        HSThemeAppearance.setAppearance(e.target.checked ? 'dark' : 'light'); 
       });
 
       $item.checked = HSThemeAppearance.getAppearance() === 'dark';

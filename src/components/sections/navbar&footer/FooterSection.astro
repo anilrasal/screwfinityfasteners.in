@@ -8,6 +8,9 @@ import BrandLogo from '@components/BrandLogo.astro';
 import { SITE } from '@data/constants';
 import BrandLogo1 from '@/components/BrandLogo1.astro';
 
+const base = import.meta.env.BASE_URL; 
+
+
 // Select the correct translation based on the page's lang prop:
 const strings = enStrings;
 
@@ -39,7 +42,7 @@ const developed: string =
               {section.links.map((link, index) => (
                 <li>
                   <a
-                    href={link.url}
+                    href={`${base}${link.url}`}
                     class="inline-flex gap-x-2 rounded-lg text-neutral-600 ring-zinc-500 outline-hidden transition duration-300 hover:text-neutral-500 focus-visible:ring-3 dark:text-neutral-400 dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-hidden"
                   >
                     {link.name}

@@ -1,8 +1,10 @@
 ---
-const { size='200', alt='Screwfinity Fasteners Logo',className = ""  } = Astro.props;
+const { size='200', alt='Screwfinity Fasteners Logo',className = ""
+ } = Astro.props;
+const base = import.meta.env.BASE_URL; 
 ---
 <img
-  src={`/images/starlight/brand-logo-${size}.png`}
+  src={`${base}images/starlight/brand-logo-${size}.png`}
   width={size}
   height={size}
   alt={alt}

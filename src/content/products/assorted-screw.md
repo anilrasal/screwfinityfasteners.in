@@ -9,11 +9,11 @@ products:
     description: 'Comprehensive set of screws for versatile fastening.'
     image: '@/images/products/assorted-screws/no12-phillips-head1-2.png'
     btnTitle: 'Contact Us to Order'
-    btnURL: '/contact'
+    btnURL: 'contact'
   - id: 'as-202'
     name: 'Phillips Head'
     description: 'Includes wood, machine, and sheet metal screws.'
     image: '@/images/products/assorted-screws/philliphead1-2.png'
     btnTitle: 'Contact Us to Order'
-    btnURL: '/contact'
+    btnURL: 'contact'
 ---

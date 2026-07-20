@@ -4,6 +4,8 @@ import { Image } from 'astro:assets';
 import Icon from '@components/ui/icons/Icon.astro';
 import type { CollectionEntry } from 'astro:content';
 
+const base = import.meta.env.BASE_URL; 
+
 const { product, productLocale = '' } = Astro.props;
 
 interface Props {
@@ -18,7 +20,7 @@ const imageClass =
 
 {/* A clickable card that leads to the details of the product*/}
 <a
-  href={`/products/${product.id}/`}
+  href={`${base}products/${product.id}/`}
   data-astro-prefetch
   class="group relative flex h-48 items-end overflow-hidden rounded-xl shadow-lg ring-zinc-500 outline-hidden focus-visible:ring-3 md:h-80 dark:ring-zinc-200 dark:focus:outline-hidden"
 >

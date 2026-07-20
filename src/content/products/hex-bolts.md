@@ -9,5 +9,5 @@ products:
     description: 'Durable hex bolt with premium finish.'
     image: '@/images/products/hex-bolts/flagbotl-1-2.png'
     btnTitle: 'Contact Us to Order'
-    btnURL: '/contact'
+    btnURL: 'contact'
 ---

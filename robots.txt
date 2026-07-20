@@ -16,4 +16,4 @@ Crawl-delay: 2
 User-agent: *
 Disallow: /
 
-Sitemap: https://screwfinityfastners.in/sitemap-index.xml
+Sitemap: https://anilrasal.github.io/screwfinityfasteners.in/sitemap-index.xml

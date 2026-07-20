@@ -9,7 +9,7 @@ import { fileURLToPath } from 'url'; // 🔑 Added to resolve absolute paths
 export default defineConfig({
   site: 'https://anilrasal.github.io/screwfinityfasteners.in/',
 
-  base: '/screwfinityfasteners.in', 
+  base: '/screwfinityfasteners.in/', 
 
   image: {
     domains: ['images.unsplash.com'],

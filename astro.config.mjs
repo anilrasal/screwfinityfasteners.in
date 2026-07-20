@@ -4,9 +4,12 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import mdx from '@astrojs/mdx';
+import { fileURLToPath } from 'url'; // 🔑 Added to resolve absolute paths
 
 export default defineConfig({
   site: 'https://anilrasal.github.io/screwfinityfasteners.in/',
+
+  base: '/screwfinityfasteners.in', 
 
   image: {
     domains: ['images.unsplash.com'],
@@ -120,7 +123,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        '@images': '/src/assets/images',
+        '@images': fileURLToPath(new URL('./src/assets/images', import.meta.url)),
       },
     },
   },

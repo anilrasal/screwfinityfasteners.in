@@ -6,7 +6,7 @@ import starlight from '@astrojs/starlight';
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-  site: 'https://screwfinityfastners.in',
+  site: 'https://anilrasal.github.io/screwfinityfasteners.in/',
 
   image: {
     domains: ['images.unsplash.com'],
